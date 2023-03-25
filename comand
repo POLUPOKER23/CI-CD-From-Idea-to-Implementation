@@ -1,0 +1,49 @@
+sudo apt update
+sudo apt install python3
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible -y 
+sudo apt install sshpass
+sudo apt install ssh
+
+cd /etc/ansible/
+vim ansible.cfg
+	[defaults]
+	inventory =  /etc/ansible/hosts/
+	host_key_checking = false
+
+cd /etc/ansible/
+vim hosts
+
+	172.31.35.94 ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
+	[all:vars]
+	ansible_python_interpreter=/usr/bin/python3
+
+
+cd /etc/ansible/
+ssh-keygen
+cd /root/.ssh/
+cat id_rsa.pub
+
+ansible all -m ping
+
+cd /home/ubuntu
+mkdir ansible-play
+cd ansible-play/
+vim dockerjenkins.yaml
+
+	[Playbook yaml]
+                           
+
+ansible-playbook dockerjenkins.yaml
+
+
+[hosts]
+
+cd /root/.ssh
+vim  authorized_keys
+
+ssh-rsa AAAAB3.....oqyJgTqKU= root@ip-172-31-36-108
+
+
+sudo chmod 666 /var/run/docker.sock
