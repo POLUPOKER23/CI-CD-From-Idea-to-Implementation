@@ -1,0 +1,40 @@
+sudo su
+
+##Download
+
+apt-add-repository ppa:ansible/ansible
+apt-get update
+apt-get install ansible
+ansible --version
+
+##Conect to client
+
+cd /etc/ansible/
+mkdir keys
+cd keys
+vim jenco.pem(відкриваєм файл і вставляєм SSH-ключ)
+chmod 400 jenco.pem
+
+cd /etc/ansible/
+vim hosts
+
+#File "hosts"
+[servers]
+
+srv1 ansible_host=(host_ip) ansible_user=ubuntu ansible_ssh_private_key_file=/etc/ansible/keys/jenco.pem
+
+vim ansible.cfg
+
+#File "ansible.cfg"
+Копіюєм файл  cfg
+
+mkdir files
+cd /etc/ansible/files/
+vim scr.sh
+
+#File "scr.sh"
+Копіюєм файл Script
+
+cd /etc/ansible/
+mkdir playbooks
+cd /etc/ansible/playbooks/
