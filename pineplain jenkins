@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'main', credentialsId: 'f87acdc7-255d-42bd-977f-4ff9f56ad1a9', url: 'https://github.com/Stas437/Exam.git'
+                sh "docker-compose up -d"
+            }
+          
+        }
+    }
+}
